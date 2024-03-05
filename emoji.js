@@ -46,6 +46,7 @@ const emojiDetails = [
 
   function nextEmoji() {
     currentEmojiIndex++;
+    setTimeout(() => {resultElement.textContent = ''},2000);
 
     if (currentEmojiIndex === emojiDetails.length) {
       currentEmojiIndex = 0;
@@ -74,5 +75,14 @@ const emojiDetails = [
       seconds--;
       timerElement.textContent = `Time left: ${seconds}s`;
 
+      if(seconds <= 0){
+        endGame();
+      }
     },1000);
+  };
+
+  function endGame(){
+    clearInterval(timer);
+    guessInput.disabled = true;
+    timerElement.textContent = '';
   }
