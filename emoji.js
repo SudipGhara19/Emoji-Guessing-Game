@@ -9,10 +9,13 @@ const emojiDetails = [
 
   let currentEmojiIndex = 0;
   let score = 0;
+  let seconds = 30;
+  let timer;
   //
 
 
   //
+  const timerElement = document.getElementById("timer")
   const guessInput = document.getElementById("guess-input");
   const resultElement = document.getElementById("result");
   const scoreElement = document.getElementById("score");
@@ -20,6 +23,8 @@ const emojiDetails = [
   function displayEmoji() {
     const descriptionElement = document.getElementById("description");
     descriptionElement.textContent = emojiDetails[currentEmojiIndex].emoji;
+    timerElement.textContent = `Time left: ${seconds}s`;
+    
   }
 
   function checkGuess() {
@@ -60,4 +65,14 @@ const emojiDetails = [
 
   document.addEventListener("DOMContentLoaded", () => {
     displayEmoji();
+    startTimer();
   });
+
+
+  function startTimer(){
+    timer = setInterval(() => {
+      seconds--;
+      timerElement.textContent = `Time left: ${seconds}s`;
+
+    },1000);
+  }
